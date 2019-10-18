@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    {% for post in all_posts_list %}
+        <div class="post-entry">
+            <h2><a href="{% url 'post_detail' post.pk %}">Requirement: {{  post.requirement }}  </a></h2>
+            <p>User name:  {{ post.user1   }}</p>
+            <p>Director/AP:  {{ post.get_dir_ap_display }}</p>
+        </div>
+    {% endfor %}
+{% endblock content %}
+

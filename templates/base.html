@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>BD Mon</title>
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400"
+    rel="stylesheet">
+    <link href="{% static 'css/base.css' %}" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <div class="nav-left">
+            <h1>
+                <a href="{% url 'home' %}">BD Mon</a>
+            </h1>
+        </div>
+        <div class="nav-right">
+            <a href="{% url 'post_new' %}">+ New Req</a>
+        </div>
+    </header>
+
+    {% if user.is_authenticated %}
+        <p>Hallo {{ user.username }}!</p>
+        <p><a href="{% url 'logout' %}">Log out</a></p>
+
+    {% else %}
+        <p>Anda belum login.</p>
+        <a href="{% url 'login' %}">Log In</a>
+    {% endif %}
+
+
+    <div>
+        {% block content %}
+        {% endblock content %}
+    </div>
+
+</body>
+</html>

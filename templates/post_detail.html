@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+        <div class="post-entry">
+            <h2><a href="">Requirement: {{  object.requirement }}  </a></h2>
+            <p>User name:  {{ object.user1   }}</p>
+            <p>Author: {{ object.author   }}</p>
+            <p>Director/AP:{{ object.get_dir_ap_display }}</p>
+            <p>Req. Type: {{ object.get_requirement_type_display   }}</p>
+            <p>Prioritas: {{ object.get_prioritas_display   }}</p>
+            <p>Target: {{ object.get_target_display   }}</p>
+            <p>Budget: kIDR {{ object.budget   }}</p>
+        </div>
+
+        <p><a href="{% url 'post_edit' post.pk %}">+ Edit Req</a></p>
+        <p><a href="{% url 'post_delete' post.pk %}">+ Delete Req</a></p>
+
+        <div class="post-entry">
+            <a href="{% url 'update_new' %}">+ New Status</a>
+            <h2><a href="">Status: </a></h2>
+            {% for comment in post.updates.all %}
+                <p>Oleh: {{ comment.author }}</p>
+                <p>Tanggal: {{ comment.last_update }} </p>
+                <p>Progres: {{ comment.progress }} % </p>
+                <p>Status:  {{ comment.get_status_display }}</p>
+                <p>Status Akhir: {{ comment.status_akhir }}</p>
+                <p>------------------------------------------------------------------------------------------------</p>
+            {% endfor %}
+
+        </div>
+
+{% endblock content %}
